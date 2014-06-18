@@ -32,6 +32,7 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.widget.EditText;
+import android.text.Html;
 
 /**
  * This class provides access to notifications on the device.
@@ -152,8 +153,8 @@ public class Notification extends CordovaPlugin {
             public void run() {
 
                 AlertDialog.Builder dlg = new AlertDialog.Builder(cordova.getActivity());
-                dlg.setMessage(message);
-                dlg.setTitle(title);
+                dlg.setMessage(Html.fromHtml(message));
+                dlg.setTitle("Go Pro");
                 dlg.setCancelable(true);
                 dlg.setPositiveButton(buttonLabel,
                         new AlertDialog.OnClickListener() {
