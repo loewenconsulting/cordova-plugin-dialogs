@@ -154,7 +154,7 @@ public class Notification extends CordovaPlugin {
             public void run() {
 
                 AlertDialog.Builder dlg = new AlertDialog.Builder(cordova.getActivity());
-                dlg.setMessage(Linkify.addLinks(Html.fromHtml(message), Linkify.ALL));
+                dlg.setMessage(Html.fromHtml(message));
                 dlg.setTitle("Go Pro");
                 dlg.setCancelable(true);
                 dlg.setPositiveButton(buttonLabel,
@@ -174,6 +174,9 @@ public class Notification extends CordovaPlugin {
 
                 dlg.create();
                 dlg.show();
+
+                // Make the textview clickable. Must be called after show()   
+                ((TextView)dlg.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
             };
         };
         this.cordova.getActivity().runOnUiThread(runnable);
